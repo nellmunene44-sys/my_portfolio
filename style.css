@@ -1,0 +1,654 @@
+/* ======================
+   Root Variables
+====================== */
+:root {
+  --primary: #0f172a;
+  --secondary: #475569;
+  --accent: #3b82f6;
+  --light: #f8fafc;
+  --border: #e2e8f0;
+}
+
+/* ======================
+   Base Reset
+====================== */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: "Inter", sans-serif;
+  color: var(--primary);
+  background: var(--light);
+  line-height: 1.7;
+}
+
+.container {
+  width: 90%;
+  max-width: 1200px;
+  margin: auto;
+}
+
+/* ======================
+   Navigation
+====================== */
+.navbar {
+  background: #ffffff;
+  border-bottom: 1px solid var(--border);
+  position: sticky;
+  top: 0;
+  z-index: 100;
+}
+
+.nav-flex {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem 0;
+}
+
+.logo {
+  font-weight: 600;
+}
+
+nav a {
+  margin-left: 1.5rem;
+  text-decoration: none;
+  color: var(--secondary);
+  font-weight: 500;
+}
+
+nav a:hover {
+  color: var(--accent);
+}
+
+/* ======================
+   Hero Section
+====================== */
+.hero {
+  padding: 6rem 0;
+  background: linear-gradient(135deg, #b3a2a7, #46233b);
+  color: white;
+}
+
+.hero-grid {
+  display: grid;
+  grid-template-columns: 1.2fr 0.8fr;
+  gap: 3rem;
+  align-items: center;
+}
+
+.hero h1 {
+  font-size: 3rem;
+}
+
+.hero h2 {
+  font-size: 1.3rem;
+  font-weight: 400;
+  margin: 1rem 0;
+}
+
+.hero p {
+  color: #e5e7eb;
+  margin-bottom: 2rem;
+}
+
+.hero-image {
+  width: 100%;
+  max-width: 420px;
+  border-radius: 12px;
+  object-fit: cover;
+  box-shadow: 0 20px 40px rgba(0,0,0,0.25);
+}
+
+.btn-primary {
+  display: inline-block;
+  background: var(--accent);
+  color: white;
+  padding: 0.8rem 1.6rem;
+  border-radius: 6px;
+  text-decoration: none;
+  font-weight: 500;
+}
+
+/* ======================
+   Sections
+====================== */
+section {
+  padding: 5rem 0;
+}
+
+h3 {
+  font-size: 2rem;
+  margin-bottom: 3rem;
+  text-align: center;
+}
+
+/* ======================
+   Skills
+====================== */
+.skills-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 2rem;
+}
+
+.skill-card {
+  background: white;
+  padding: 2rem;
+  border-radius: 10px;
+  border: 1px solid var(--border);
+}
+
+.skill-card ul {
+  list-style: none;
+  margin-top: 1rem;
+}
+
+.skill-card li {
+  margin-bottom: 0.6rem;
+}
+
+/* ======================
+   WORK SAMPLES (TIMELINE)
+====================== */
+.work-samples {
+  background: #f8fafc;
+}
+
+.work-grid {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: 6rem;
+  padding: 0 2rem;
+}
+
+/* Vertical line */
+.work-grid::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 50%;
+  width: 4px;
+  background: var(--border);
+  transform: translateX(-50%);
+}
+
+/* Work unit (image + text together) */
+.work-unit {
+  display: flex;
+  gap: 2.5rem;
+  max-width: 1000px;
+  margin: 0 auto;
+  position: relative;
+}
+
+/* Timeline dot */
+.work-unit::before {
+  content: "";
+  position: absolute;
+  top: 32px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 14px;
+  height: 14px;
+  background: var(--accent);
+  border-radius: 50%;
+  z-index: 2;
+}
+
+/* Connector */
+.work-unit::after {
+  content: "";
+  position: absolute;
+  top: 38px;
+  width: 50%;
+  height: 2px;
+  background: var(--border);
+}
+
+/* Zig-zag */
+.work-unit:nth-child(odd) {
+  flex-direction: row;
+}
+
+.work-unit:nth-child(odd)::after {
+  left: 50%;
+}
+
+.work-unit:nth-child(even) {
+  flex-direction: row-reverse;
+}
+
+.work-unit:nth-child(even)::after {
+  right: 50%;
+}
+
+/* Media card */
+.work-card {
+  flex: 1;
+  background: white;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 8px 24px rgba(0,0,0,0.06);
+}
+
+.work-image {
+  height: 260px;
+}
+
+.work-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* Text panel */
+.work-text {
+  flex: 1;
+  padding: 2rem;
+  border-radius: 12px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+/* Alternating backgrounds */
+.work-unit:nth-child(even) .work-text {
+  background: #f1f5f9;
+}
+
+.work-text p {
+  font-size: 1rem;
+  margin-bottom: 1rem;
+}
+
+.work-text a {
+  color: var(--accent);
+  text-decoration: none;
+  font-weight: 500;
+}
+
+/* ======================
+   Portfolio
+====================== */
+.portfolio-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 2rem;
+}
+
+.portfolio-card {
+  background: white;
+  padding: 2rem;
+  border-radius: 10px;
+  border: 1px solid var(--border);
+}
+
+.portfolio-card span {
+  color: var(--accent);
+  font-weight: 600;
+}
+
+/* ======================
+   Contact
+====================== */
+.contact-container {
+  max-width: 600px;
+  margin: auto;
+  text-align: center;
+}
+
+form input,
+form textarea {
+  width: 100%;
+  margin-bottom: 1rem;
+  padding: 0.8rem;
+  border-radius: 6px;
+  border: 1px solid var(--border);
+}
+
+form textarea {
+  min-height: 120px;
+}
+
+/* ======================
+   Footer (Compact & Slim)
+====================== */
+.site-footer {
+  background: #020617;
+  color: #e5e7eb;
+  padding: 2rem 0 1.2rem;
+}
+
+/* Grid container */
+.footer-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 2rem;
+  padding-bottom: 2rem;
+  border-bottom: 1px solid #1e293b;
+}
+
+/* Footer text sizing */
+.site-footer p,
+.site-footer li {
+  font-size: 0.85rem;
+  line-height: 1.4;
+}
+
+/* Links */
+.site-footer a {
+  color: #cbd5f5;
+  text-decoration: none;
+}
+
+.site-footer a:hover {
+  color: var(--accent);
+}
+
+/* ======================
+   Social Icons (FIX)
+====================== */
+.footer-social {
+  display: flex;
+  flex-direction: column;
+  gap: 0.8rem;
+}
+
+.footer-social .social-icons {
+  display: flex;              /* horizontal */
+  align-items: center;
+  gap: 0.6rem;                /* tight spacing */
+  margin-top: 0.4rem;
+}
+
+/* Icon size */
+.footer-social svg {
+  width: 18px;                /* SMALL */
+  height: 18px;
+  fill: #cbd5f5;
+  transition: transform 0.2s ease, fill 0.2s ease;
+}
+
+.footer-social a:hover svg {
+  fill: var(--accent);
+  transform: translateY(-1px);
+}
+
+/* ======================
+   Footer Bottom
+====================== */
+.footer-bottom {
+  text-align: center;
+  padding-top: 0.8rem;
+  font-size: 0.75rem;
+  color: #94a3b8;
+}
+
+
+/* ======================
+   Responsive
+====================== */
+@media (max-width: 768px) {
+  .hero-grid,
+  .skills-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .work-grid::before {
+    left: 12px;
+  }
+
+  .work-unit {
+    flex-direction: column !important;
+    padding-left: 2rem;
+  }
+
+  .work-unit::before {
+    left: 12px;
+    transform: none;
+  }
+
+  .work-unit::after {
+    display: none;
+  }
+}
+
+
+
+/* ======================
+   Root Variables
+====================== */
+:root {
+  --primary: #0f172a;
+  --secondary: #475569;
+  --accent: #3b82f6;
+  --light: #f8fafc;
+  --border: #e2e8f0;
+}
+
+/* ======================
+   Base Reset Blog CSS
+====================== */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: "Inter", sans-serif;
+  color: var(--primary);
+  background: var(--light);
+  line-height: 1.7;
+}
+
+.container {
+  width: 90%;
+  max-width: 1200px;
+  margin: auto;
+  text-align: center;
+  gap: 2rem;
+}
+
+/* ======================
+   Navigation (shared)
+====================== */
+.navbar {
+  background: #ffffff;
+  border-bottom: 1px solid var(--border);
+  position: sticky;
+  top: 0;
+  z-index: 100;
+}
+
+.nav-flex {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem 0;
+}
+
+.logo {
+  font-weight: 600;
+}
+
+nav a {
+  margin-left: 1.5rem;
+  text-decoration: none;
+  color: var(--secondary);
+  font-weight: 500;
+}
+
+nav a.active,
+nav a:hover {
+  color: var(--accent);
+}
+
+/* ======================
+   Blog Hero / Header
+====================== */
+.blog-hero {
+  padding: 5rem 0 3rem;
+  background: linear-gradient(135deg, #1e293b, #020617);
+  color: white;
+  text-align: center;
+}
+
+.blog-hero h1 {
+  font-size: 2.6rem;
+  margin-bottom: 0.8rem;
+}
+
+.blog-hero p {
+  max-width: 700px;
+  margin: auto;
+  color: #cbd5f5;
+  font-size: 1.05rem;
+}
+
+/* ======================
+   Blog Section
+====================== */
+.blog-section {
+  padding: 5rem 0;
+}
+
+/* Grid */
+.blog-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 2.5rem;
+}
+
+/* Blog Card */
+.blog-card {
+  background: white;
+  padding: 2.2rem;
+  border-radius: 14px;
+  border: 1px solid var(--border);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  box-shadow: 0 8px 28px rgba(0,0,0,0.05);
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+
+.blog-card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 14px 36px rgba(0,0,0,0.08);
+}
+
+/* Blog Title */
+.blog-card h3 {
+  font-size: 1.25rem;
+  margin-bottom: 0.8rem;
+  line-height: 1.4;
+}
+
+/* Blog Meta */
+.blog-meta {
+  font-size: 0.8rem;
+  color: var(--secondary);
+  margin-bottom: 0.6rem;
+}
+
+/* Blog Summary */
+.blog-card p {
+  font-size: 0.95rem;
+  margin-bottom: 1.2rem;
+  color: var(--secondary);
+}
+
+/* ======================
+   Blog Tags
+====================== */
+.blog-tags {
+  margin-bottom: 0.9rem;
+}
+
+.tag {
+  display: inline-block;
+  font-size: 0.7rem;
+  padding: 0.25rem 0.55rem;
+  border-radius: 6px;
+  margin-right: 0.3rem;
+  font-weight: 600;
+}
+
+/* Tag Variants */
+.tag.data {
+  background: #e0f2fe;
+  color: #0369a1;
+}
+
+.tag.executive {
+  background: #ede9fe;
+  color: #5b21b6;
+}
+
+.tag.strategy {
+  background: #fef3c7;
+  color: #92400e;
+}
+
+/* ======================
+   Blog CTA Link
+====================== */
+.blog-card a {
+  margin-top: auto;
+  text-decoration: none;
+  color: var(--accent);
+  font-weight: 600;
+  font-size: 0.9rem;
+}
+
+.blog-card a:hover {
+  text-decoration: underline;
+}
+
+/* ======================
+   Load More
+====================== */
+.load-more-container {
+  text-align: center;
+  margin-top: 4rem;
+}
+
+.load-more-container button {
+  background: var(--accent);
+  color: white;
+  border: none;
+  padding: 0.8rem 1.6rem;
+  border-radius: 6px;
+  font-weight: 500;
+  cursor: pointer;
+}
+
+.load-more-container button:hover {
+  opacity: 0.9;
+}
+
+/* Hidden posts (JS toggle) */
+.hidden {
+  display: none;
+}
+
+
+/* ======================
+   Responsive
+====================== */
+@media (max-width: 768px) {
+  .blog-hero h1 {
+    font-size: 2rem;
+  }
+
+  .blog-card {
+    padding: 1.8rem;
+  }
+}
