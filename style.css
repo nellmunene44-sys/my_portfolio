@@ -274,6 +274,104 @@ h3 {
 }
 
 /* ======================
+   Certificates
+====================== */
+
+.certificates {
+  background-color: #ffffff;
+  padding: 4.5rem 0;
+}
+
+.certificates h3 {
+  text-align: center;
+  margin-bottom: 3rem;
+}
+
+/* Timeline container */
+.certificates-timeline {
+  position: relative;
+  max-width: 720px;
+  margin: 0 auto;
+  padding-left: 2rem;
+}
+
+/* Vertical line */
+.certificates-timeline::before {
+  content: "";
+  position: absolute;
+  left: 8px;
+  top: 0;
+  width: 2px;
+  height: 100%;
+  background-color: #e5e7eb;
+}
+
+/* Timeline item */
+.timeline-item {
+  position: relative;
+  padding-left: 2.5rem;
+  margin-bottom: 2.5rem;
+}
+
+/* Dot */
+.timeline-dot {
+  position: absolute;
+  left: 0;
+  top: 6px;
+  width: 16px;
+  height: 16px;
+  background-color: #111827;
+  border-radius: 50%;
+}
+
+/* Content card */
+.timeline-content {
+  background-color: #f9fafb;
+  border-radius: 12px;
+  padding: 1.5rem;
+  transition: transform 0.3s ease;
+}
+
+.timeline-content:hover {
+  transform: translateX(6px);
+}
+
+.timeline-content h4 {
+  font-size: 1.05rem;
+  margin-bottom: 0.25rem;
+}
+
+.timeline-content .issuer {
+  font-size: 0.9rem;
+  color: #6b7280;
+  margin-bottom: 0.75rem;
+}
+
+.timeline-content a {
+  font-size: 0.9rem;
+  font-weight: 500;
+  text-decoration: none;
+  color: #111827;
+  border-bottom: 1px solid transparent;
+}
+
+.timeline-content a:hover {
+  border-color: #111827;
+}
+
+/* Mobile tweaks */
+@media (max-width: 600px) {
+  .certificates-timeline {
+    padding-left: 1.5rem;
+  }
+
+  .timeline-content {
+    padding: 1.25rem;
+  }
+}
+
+
+/* ======================
    Portfolio
 ====================== */
 .portfolio-grid {
