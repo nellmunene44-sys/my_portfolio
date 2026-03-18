@@ -1,84 +1,65 @@
 document.addEventListener("DOMContentLoaded", () => {
-
-  /* =========================
-     Contact Form Handling
-  ========================= */
-  const contactForm = document.getElementById("contactForm");
-
-  if (contactForm) {
-    contactForm.addEventListener("submit", function (e) {
-      e.preventDefault();
-      alert("Thank you for your message. I will respond promptly.");
-      this.reset();
-    });
-  }
-
-  /* =========================
-     Blog Load More (Robust Version)
-  ========================= */
-  const loadMoreBtn = document.getElementById("loadMoreBtn");
-  const blogCards = document.querySelectorAll(".blog-card");
-
-  let visibleCount = 6; // blogs 1–6 visible initially
-  const increment = 3; // reveal 3 at a time
-
-  if (loadMoreBtn && blogCards.length > 0) {
-    // Hide cards beyond initial count
-    blogCards.forEach((card, index) => {
-      if (index >= visibleCount) {
-        card.style.display = "none";
-      }
-    });
-
-    loadMoreBtn.addEventListener("click", () => {
-      const nextVisible = visibleCount + increment;
-
-      blogCards.forEach((card, index) => {
-        if (index < nextVisible) {
-          card.style.display = "block";
-        }
-      });
-
-      visibleCount = nextVisible;
-
-      if (visibleCount >= blogCards.length) {
-        loadMoreBtn.style.display = "none";
-      }
-    });
-  }
-
-  /* =========================
-     Dynamic Footer Year
-  ========================= */
   const footerYear = document.getElementById("footerYear");
   if (footerYear) {
     footerYear.textContent = new Date().getFullYear();
   }
 
-});
+  const blogCards = Array.from(document.querySelectorAll(".blog-card"));
+  const loadMoreBtn = document.getElementById("loadMoreBtn");
+  const initialVisibleCount = 6;
+  const increment = 3;
 
-// Fade-in / Fade-out on scroll for work samples
-document.addEventListener("DOMContentLoaded", () => {
+  if (blogCards.length > 0 && loadMoreBtn) {
+    let visibleCount = initialVisibleCount;
+
+    blogCards.forEach((card, index) => {
+      card.classList.toggle("hidden", index >= visibleCount);
+    });
+
+    if (blogCards.length <= visibleCount) {
+      loadMoreBtn.hidden = true;
+    }
+
+    loadMoreBtn.addEventListener("click", () => {
+      visibleCount += increment;
+
+      blogCards.forEach((card, index) => {
+        if (index < visibleCount) {
+          card.classList.remove("hidden");
+        }
+      });
+
+      if (visibleCount >= blogCards.length) {
+        loadMoreBtn.hidden = true;
+      }
+    });
+  }
+
   const workCards = document.querySelectorAll(".work-card");
+  if (workCards.length === 0) {
+    return;
+  }
+
+  const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  if (prefersReducedMotion || !("IntersectionObserver" in window)) {
+    workCards.forEach((card) => card.classList.add("visible"));
+    return;
+  }
 
   const observer = new IntersectionObserver(
     (entries) => {
       entries.forEach((entry) => {
         if (entry.isIntersecting) {
           entry.target.classList.add("visible");
-        } else {
-          entry.target.classList.remove("visible");
+          observer.unobserve(entry.target);
         }
       });
     },
-    {
-      threshold: 0.3, // 30% of the card visible triggers fade-in
-    }
+    { threshold: 0.25 }
   );
 
   workCards.forEach((card, index) => {
+    card.style.transitionDelay = `${index * 0.12}s`;
     observer.observe(card);
-    // Optional: stagger animations
-    card.style.transitionDelay = `${index * 0.15}s`;
   });
 });
